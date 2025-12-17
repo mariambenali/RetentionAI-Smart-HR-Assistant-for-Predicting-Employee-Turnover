@@ -9,4 +9,5 @@ uvicorn
 sqlalchemy 
 python-dotenv
 psycopg2
-bcrypt
+python-jose
+passlib
