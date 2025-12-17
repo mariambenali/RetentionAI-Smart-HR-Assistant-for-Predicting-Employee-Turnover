@@ -3,6 +3,8 @@ scikit-learn
 numpy
 matplotlib
 seaborn
-
-
-
+fastapi
+pydantic 
+uvicorn 
+sqlalchemy 
+python-dotenv
