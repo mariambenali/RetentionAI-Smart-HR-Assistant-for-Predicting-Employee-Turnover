@@ -15,7 +15,7 @@ class User(Base):
 class Employee(Base):
     __tablename__ = "employees"
 
-    id = Column(Integer, primary_key =True)
+    id = Column(Integer, )
 
     job_level = Column(Integer)
     monthly_income = Column(Integer)

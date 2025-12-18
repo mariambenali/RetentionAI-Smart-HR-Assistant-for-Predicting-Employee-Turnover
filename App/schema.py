@@ -23,3 +23,31 @@ class UserLogin(BaseModel):
 class Prediction(BaseModel):
     employee_id: int
     probability: str
+
+
+
+'''
+Age
+BusinessTravel
+Department
+Education
+EducationField
+EnvironmentSatisfaction
+Gender
+JobInvolvement
+JobLevel
+JobRole
+JobSatisfaction
+MaritalStatus
+MonthlyIncome
+Over18
+OverTime
+PerformanceRating
+RelationshipSatisfaction
+StockOptionLevel
+TotalWorkingYears
+WorkLifeBalance
+YearsAtCompany
+YearsInCurrentRole 
+YearsWithCurrManager
+'''
