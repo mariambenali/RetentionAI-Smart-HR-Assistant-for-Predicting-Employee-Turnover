@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import date
 
 
@@ -20,31 +20,33 @@ class UserLogin(BaseModel):
             }
 
 
-class Employee(BaseModel):
-    Age: int
-    BusinessTravel: str
-    Department: str
-    Education: int
-    EducationField: str
-    EnvironmentSatisfaction: int
-    Gender: str
-    JobInvolvement: int
-    JobLevel: int
-    JobRole: str
-    JobSatisfaction: int
-    MaritalStatus: str
-    MonthlyIncome: int
-    Over18: str
-    OverTime: str
-    PerformanceRating: int
-    RelationshipSatisfaction: int
-    StockOptionLevel: int
-    TotalWorkingYears: int
-    WorkLifeBalance: int
-    YearsAtCompany: int
-    YearsInCurrentRole: int
-    YearsWithCurrManager: int
+class CreationEmployee(BaseModel):
+    age: int = Field(alias="Age")
+    business_travel: str = Field(alias="BusinessTravel")
+    department: str = Field(alias="Department")
+    education: int = Field(alias="Education")
+    education_field: str = Field(alias="EducationField")
+    environment_satisfaction: int = Field(alias="EnvironmentSatisfaction")
+    gender: str = Field(alias="Gender")
+    job_involvement: int = Field(alias="JobInvolvement")
+    job_level: int = Field(alias="JobLevel")
+    job_role: str = Field(alias="JobRole")
+    job_satisfaction: int = Field(alias="JobSatisfaction")
+    marital_status: str = Field(alias="MaritalStatus")
+    monthly_income: int = Field(alias="MonthlyIncome")
+    over18: str = Field(alias="Over18")
+    overtime: str = Field(alias="OverTime")
+    performance_rating: int = Field(alias="PerformanceRating")
+    relationship_satisfaction: int = Field(alias="RelationshipSatisfaction")
+    stock_option_level: int = Field(alias="StockOptionLevel")
+    total_working_years: int = Field(alias="TotalWorkingYears")
+    work_life_balance: int = Field(alias="WorkLifeBalance")
+    years_at_company: int = Field(alias="YearsAtCompany")
+    years_in_current_role: int = Field(alias="YearsInCurrentRole")
+    years_with_curr_manager: int = Field(alias="YearsWithCurrManager")
 
+    class Config:
+        allow_population_by_field_name = True
 
 class Prediction(BaseModel):
     idemployee: int

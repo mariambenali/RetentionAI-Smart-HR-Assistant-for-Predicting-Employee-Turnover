@@ -1,10 +1,11 @@
 from .database import Base, engine, get_db
-from .schema import UserCreate, UserLogin, Prediction
+from .schema import UserCreate, UserLogin, Prediction, CreationEmployee
 from .models import User, Employee
 from fastapi import FastAPI, Depends, HTTPException
 from .hash import hashed_password, verify_password
 from .security import SECRET_KEY, ALGORITHM
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from Machine_learning.predictor import model_predicted
 from sqlalchemy.orm import Session
 from datetime import date
 from jose import jwt
@@ -45,7 +46,6 @@ def login(user:UserLogin, db: Session = Depends(get_db)):
 
     return token
 
-    
 
 @app.get("/token")
 def get_token(token:HTTPAuthorizationCredentials = Depends(type_token)):
@@ -54,3 +54,24 @@ def get_token(token:HTTPAuthorizationCredentials = Depends(type_token)):
         return decoded
     except Exception as e:
         raise HTTPException(status_code=401, detail="Invalid token")
+    
+
+@app.post("/employees")
+def create_employee(employee: CreationEmployee,db: Session = Depends(get_db)):
+
+    new_employee = Employee(**employee.dict(by_alias=False))
+
+    db.add(new_employee)
+    db.commit()
+    db.refresh(new_employee)
+
+    return new_employee
+
+
+@app.post("/prediction")
+def prediction():
+
+    
+
+
+    return 
