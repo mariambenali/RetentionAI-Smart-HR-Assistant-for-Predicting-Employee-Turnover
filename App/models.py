@@ -1,45 +1,72 @@
 from .database import Base
 from sqlalchemy import String, Integer,Column, Date, ForeignKey
-
+from sqlalchemy.orm import relationship
 
 
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key =True)
+    id = Column(Integer, primary_key =True, index=True)
     username = Column(String)
     password = Column(String)
     date_creation = Column(Date)
+
+#relation entre les tables: chaque User peut avoir plusieur employees
+    employees = relationship(
+        "Employee",
+        back_populates="user",
+        cascade="all, delete"
+    )
     
 class Employee(Base):
     __tablename__ = "employees"
 
-    id = Column(Integer, )
+    id = Column(Integer, primary_key=True)
+    Age = Column(Integer)
+    BusinessTravel = Column(String)
+    Department = Column(String)
+    Education = Column(Integer)
+    EducationField = Column(String)
+    EnvironmentSatisfaction = Column(Integer)
+    Gender = Column(String)
+    JobInvolvement = Column(Integer)
+    JobLevel = Column(Integer)
+    JobRole = Column(String)
+    JobSatisfaction = Column(Integer)
+    MaritalStatus = Column(String)
+    MonthlyIncome = Column(Integer)
+    Over18 = Column(String)
+    OverTime = Column(String)
+    PerformanceRating = Column(Integer)
+    RelationshipSatisfaction = Column(Integer)
+    StockOptionLevel = Column(Integer)
+    TotalWorkingYears = Column(Integer)
+    WorkLifeBalance = Column(Integer)
+    YearsAtCompany = Column(Integer)
+    YearsInCurrentRole = Column(Integer)
+    YearsWithCurrManager = Column(Integer)
 
-    job_level = Column(Integer)
-    monthly_income = Column(Integer)
-    stock_option_level = Column(Integer)
-    total_working_years = Column(Integer)
-    years_at_company = Column(Integer)
-    years_in_current_role = Column(Integer)
-    years_with_curr_manager = Column(Integer)
-    gender = Column(String)
-    education = Column(String)
-    job_satisfaction = Column(String)
-    overtime = Column(String)
-    relationship_satisfaction = Column(String)
-    job_involvement = Column(String)
-    job_role = Column(String)
-    performance_rating = Column(String)
-    marital_status = Column(String)
-    department = Column(String)
-    over_18 = Column(String)
-    work_life_balance = Column(String)
-    business_travel = Column(String)
-    environment_satisfaction = Column(String)
-    attirition = Column(String)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user = relationship("User", back_populates="employees")
+
+    history = relationship(
+        "History",
+        back_populates="employee",
+        cascade="all, delete"
+    )
 
 
+class History(Base):
+    __tablename__ = "predictions_history"
 
+    id = Column(Integer, primary_key=True)
+    userid = Column(Integer)
+    employeeid = Column(Integer)
+    probability = Column(String)
 
+    employee_id = Column(Integer, ForeignKey("employees.id"))
+    employee = relationship(
+        "Employee",
+        back_populates="history"
+    )

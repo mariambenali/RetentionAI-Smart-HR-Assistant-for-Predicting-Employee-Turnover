@@ -20,34 +20,33 @@ class UserLogin(BaseModel):
             }
 
 
+class Employee(BaseModel):
+    Age: int
+    BusinessTravel: str
+    Department: str
+    Education: int
+    EducationField: str
+    EnvironmentSatisfaction: int
+    Gender: str
+    JobInvolvement: int
+    JobLevel: int
+    JobRole: str
+    JobSatisfaction: int
+    MaritalStatus: str
+    MonthlyIncome: int
+    Over18: str
+    OverTime: str
+    PerformanceRating: int
+    RelationshipSatisfaction: int
+    StockOptionLevel: int
+    TotalWorkingYears: int
+    WorkLifeBalance: int
+    YearsAtCompany: int
+    YearsInCurrentRole: int
+    YearsWithCurrManager: int
+
+
 class Prediction(BaseModel):
-    employee_id: int
+    idemployee: int
     probability: str
 
-
-
-'''
-Age
-BusinessTravel
-Department
-Education
-EducationField
-EnvironmentSatisfaction
-Gender
-JobInvolvement
-JobLevel
-JobRole
-JobSatisfaction
-MaritalStatus
-MonthlyIncome
-Over18
-OverTime
-PerformanceRating
-RelationshipSatisfaction
-StockOptionLevel
-TotalWorkingYears
-WorkLifeBalance
-YearsAtCompany
-YearsInCurrentRole 
-YearsWithCurrManager
-'''
