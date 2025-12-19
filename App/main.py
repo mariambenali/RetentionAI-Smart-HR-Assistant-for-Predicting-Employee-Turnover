@@ -9,6 +9,9 @@ from Machine_learning.gemini_api import pred_api
 from sqlalchemy.orm import Session
 from datetime import date
 from jose import jwt
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 
 
@@ -16,6 +19,13 @@ from jose import jwt
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
 type_token= HTTPBearer()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/register")
 def register(user:UserCreate, db: Session = Depends(get_db)):
@@ -39,7 +49,7 @@ def login(user:UserLogin, db: Session = Depends(get_db)):
     if not user_login:
         raise HTTPException(status_code = 404, detail="User not found")
     elif not verify_password(user.password, user_login.password):
-        raise HTTPException(status_code=401, detail="Invalid password")
+        raise HTTPException(status_code=401, detail="Invalid credentials") ########### AVERIFIERRRRR !!!!!!
     
     payload = {"sub": user_login.username}
     token = jwt.encode(payload,SECRET_KEY,algorithm=ALGORITHM)
