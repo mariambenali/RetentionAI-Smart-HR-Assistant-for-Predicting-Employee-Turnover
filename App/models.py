@@ -1,5 +1,6 @@
 from .database import Base
-from sqlalchemy import String, Integer,Column, Date, ForeignKey
+from sqlalchemy import String, Integer,Column, Date, ForeignKey, DateTime
+from datetime import datetime
 from sqlalchemy.orm import relationship
 
 
@@ -64,6 +65,7 @@ class History(Base):
     userid = Column(Integer)
     employeeid = Column(Integer)
     probability = Column(String)
+    timestamp = Column(DateTime, default=datetime.utcnow)
 
     employee_id = Column(Integer, ForeignKey("employees.id"))
     employee = relationship(

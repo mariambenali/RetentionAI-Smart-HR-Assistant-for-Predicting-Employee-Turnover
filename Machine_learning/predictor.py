@@ -2,6 +2,7 @@ import joblib
 import pandas as pd
 import numpy as np
 
+
 #changer le model
 #transformer les features (l'entrée de endpoint =predict) au DF
 #donner ces df au model pour la prediction prediction
@@ -45,9 +46,7 @@ test_df = pd.DataFrame([{
 def model_predicted(df_input: pd.DataFrame):
 
     proba= model.predict_proba(df_input)[:,1]
-
-
-    
     return proba
 
 #print(model_predicted(test_df))
+

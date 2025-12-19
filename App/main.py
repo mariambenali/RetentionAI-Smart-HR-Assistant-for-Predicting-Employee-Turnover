@@ -5,7 +5,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from .hash import hashed_password, verify_password
 from .security import SECRET_KEY, ALGORITHM
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from Machine_learning.predictor import model_predicted
+from Machine_learning.gemini_api import pred_api
 from sqlalchemy.orm import Session
 from datetime import date
 from jose import jwt
@@ -69,9 +69,12 @@ def create_employee(employee: CreationEmployee,db: Session = Depends(get_db)):
 
 
 @app.post("/prediction")
-def prediction():
+def prediction(pred:Prediction, db: Session = Depends(get_db)):
 
-    
+    pred_attirition= pred_api()
 
+    db.add(pred_attirition)
+    db.commit()
+    db.refresh(pred_attirition)
 
-    return 
+    return pred_attirition

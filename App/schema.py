@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from datetime import date
+from datetime import date, datetime
 
 
 
@@ -49,6 +49,9 @@ class CreationEmployee(BaseModel):
         allow_population_by_field_name = True
 
 class Prediction(BaseModel):
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
     idemployee: int
     probability: str
+    retention_plan: str
+
 

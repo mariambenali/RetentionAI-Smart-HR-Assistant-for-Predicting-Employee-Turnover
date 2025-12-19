@@ -11,3 +11,5 @@ python-dotenv
 psycopg2
 python-jose
 passlib
+google-genai
+pytest
