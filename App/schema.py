@@ -46,12 +46,10 @@ class CreationEmployee(BaseModel):
     years_with_curr_manager: int = Field(alias="YearsWithCurrManager")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
-class Prediction(BaseModel):
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
-    idemployee: int
-    probability: str
-    retention_plan: str
+class EmployeeId(BaseModel):
+    employee_id: int
+
 
 

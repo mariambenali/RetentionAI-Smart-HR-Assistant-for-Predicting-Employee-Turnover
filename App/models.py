@@ -1,5 +1,5 @@
 from .database import Base
-from sqlalchemy import String, Integer,Column, Date, ForeignKey, DateTime
+from sqlalchemy import String, Integer,Column, Date, ForeignKey, DateTime, JSON, Float
 from datetime import datetime
 from sqlalchemy.orm import relationship
 
@@ -57,18 +57,24 @@ class Employee(Base):
         cascade="all, delete"
     )
 
+    
+
 
 class History(Base):
     __tablename__ = "predictions_history"
 
     id = Column(Integer, primary_key=True)
-    userid = Column(Integer)
-    employeeid = Column(Integer)
-    probability = Column(String)
+    probability = Column(Float)
+    retention_plan = Column(JSON)
     timestamp = Column(DateTime, default=datetime.utcnow)
-
     employee_id = Column(Integer, ForeignKey("employees.id"))
+
     employee = relationship(
         "Employee",
-        back_populates="history"
+        back_populates="history",
+        cascade="all, delete"
     )
+   
+
+
+
