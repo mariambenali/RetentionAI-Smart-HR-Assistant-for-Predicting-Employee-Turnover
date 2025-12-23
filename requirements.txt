@@ -1,0 +1,15 @@
+pandas
+scikit-learn
+numpy
+matplotlib
+seaborn
+fastapi
+pydantic 
+uvicorn 
+sqlalchemy 
+python-dotenv
+psycopg2
+python-jose
+passlib
+google-genai
+pytest
